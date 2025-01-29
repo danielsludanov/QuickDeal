@@ -14,23 +14,71 @@
         </Grid.RowDefinitions>
 
         <!-- Логотип и заголовок -->
-        <StackPanel Orientation="Horizontal" Width="250" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="16">
-            <Image Name="Logotype" Grid.Row="0" Source="References/Images/UI/Logo.png" Margin="0 0 10 0"/>
-            <Label Name="Header" Content="Доска объявлений" Margin="5 0 0 0" Style="{StaticResource Header}"/>
+        <StackPanel Orientation="Horizontal" Width="200" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="16">
+            <Image Name="Logotype" Grid.Row="0" Source="References/Images/UI/Logo.png" Margin="0 0 0 0"/>
+            <Label Name="Header" Content="Доска объявлений" Margin="0 0 0 0" Style="{StaticResource Header}"/>
         </StackPanel>
 
         <!-- Панель с элементами поиска -->
-        <StackPanel Orientation="Horizontal" Width="770" Margin="16" VerticalAlignment="Center">
-            <Label Content="Поиск" Margin="0 0 10 0" Style="{StaticResource Header}"/>
-            <TextBox x:Name="Search" Width="250" Margin="0 0 10 0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="14" Padding="5" Foreground="#37474f" FontFamily="Tw Cen MT"/>
+        <StackPanel Orientation="Horizontal" Width="870" Margin="16" VerticalAlignment="Center">
 
-            <ComboBox x:Name="City" Width="100" Margin="0 0 10 0"/>
-            <ComboBox x:Name="Category" Width="100" Margin="0 0 10 0"/>
-            <ComboBox x:Name="Type" Width="100" Margin="0 0 10 0"/>
-            <ComboBox x:Name="Status" Width="100" Margin="0 0 10 0"/>
+            <Label Content="Город" Style="{StaticResource Header}" FontSize="12" Margin="5 0 0 0"/>
+            <ComboBox x:Name="City" Width="100" Margin="0 0 10 0" Style="{StaticResource ACombobox}" Height="20"/>
+            <Label Content="Категория" Style="{StaticResource Header}" FontSize="12"/>
+            <ComboBox x:Name="Category" Width="100" Margin="0 0 10 0" Style="{StaticResource ACombobox}" Height="20"/>
+            <Label Content="Тип" Style="{StaticResource Header}" FontSize="12"/>
+            <ComboBox x:Name="Type" Width="100" Margin="0 0 10 0" Style="{StaticResource ACombobox}" Height="20"/>
+            <Label Content="Статус" Style="{StaticResource Header}" FontSize="12"/>
+            <ComboBox x:Name="Status" Width="100" Margin="0 0 10 0" Style="{StaticResource ACombobox}" Height="20"/>
+            <Label Content="Поиск" Margin="0 0 0 0" Style="{StaticResource Header}"/>
+            <TextBox x:Name="Search" Width="120" Margin="0 0 10 0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="12" Padding="5" Foreground="#37474f" FontFamily="Tw Cen MT" Height="25"/>
         </StackPanel>
 
         <Button Content="Авторизация" HorizontalAlignment="Right" Margin="16" Height="30" VerticalAlignment="Center" Width="120" Style="{StaticResource AButton}"/>
+
+        <StackPanel Grid.Row="1">
+            <ScrollViewer VerticalScrollBarVisibility="Visible" CanContentScroll="True">
+                <ListView x:Name="ListAds" HorizontalContentAlignment="Center">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ListView}}"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="350"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Image Width="350" Grid.Row="1" Stretch="UniformToFill" HorizontalAlignment="Center" Margin="0 0 10 0">
+                                    <Image.Source>
+                                        <Binding Path="ad_image">
+                                            <Binding.TargetNullValue>
+                                                <ImageSource>
+                                                    /References/Images/Ads/default.jpg
+                                                </ImageSource>
+                                            </Binding.TargetNullValue>
+                                        </Binding>
+                                    </Image.Source>
+                                </Image>
+
+                                <TextBlock Grid.Row="2" Text="{Binding title}" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+                                <TextBlock Grid.Row="3" Text="{Binding ad_price}" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+                                <TextBlock Grid.Row="4" Text="{Binding city.city_name}" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+                                <TextBlock Grid.Row="5" Text="{Binding ad_types.ad_type_name}" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollViewer>
+            
+            
+        </StackPanel>
 
     </Grid>
 </Window>

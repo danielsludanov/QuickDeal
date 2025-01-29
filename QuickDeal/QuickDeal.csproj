@@ -182,6 +182,28 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="References\Images\Ads\01.png" />
+    <Resource Include="References\Images\Ads\02.png" />
+    <Resource Include="References\Images\Ads\03.png" />
+    <Resource Include="References\Images\Ads\04.png" />
+    <Resource Include="References\Images\Ads\05.png" />
+    <Resource Include="References\Images\Ads\06.png" />
+    <Resource Include="References\Images\Ads\07.png" />
+    <Resource Include="References\Images\Ads\08.png" />
+    <Resource Include="References\Images\Ads\09.png" />
+    <Resource Include="References\Images\Ads\10.png" />
+    <Resource Include="References\Images\Ads\default.jpg" />
+    <Resource Include="Ads\01.png" />
+    <Resource Include="Ads\02.png" />
+    <Resource Include="Ads\03.png" />
+    <Resource Include="Ads\04.png" />
+    <Resource Include="Ads\05.png" />
+    <Resource Include="Ads\06.png" />
+    <Resource Include="Ads\07.png" />
+    <Resource Include="Ads\08.png" />
+    <Resource Include="Ads\09.png" />
+    <Resource Include="Ads\10.png" />
+    <Resource Include="Ads\default.jpg" />
     <Content Include="Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
