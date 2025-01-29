@@ -16,10 +16,10 @@
             
 
             <Label Name="Login" Content="Логин" Style="{StaticResource Header}" Padding="10"/>
-            <TextBox x:Name="UserLogin" Style="{StaticResource ATextBox}" Height="30" Margin="0 0 0 16"/>
+            <TextBox x:Name="UserLogin" Style="{StaticResource ATextBox}" Height="30" Margin="0 0 0 16" MaxLength="50"/>
 
             <Label Name="Password" Content="Пароль" Style="{StaticResource Header}" Padding="10"/>
-            <PasswordBox x:Name="UserPassword" Style="{StaticResource APasswordBox}" Height="30" Margin="0 0 0 16"/>
+            <PasswordBox x:Name="UserPassword" Style="{StaticResource APasswordBox}" Height="30" Margin="0 0 0 16" MaxLength="50"/>
 
             <Button x:Name="BtnLogin" Content="Войти" Style="{StaticResource AButton}" Click="BtnLogin_Click" Width="120" Margin="0 0 0 16" Height="30"/>
 
