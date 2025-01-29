@@ -1,0 +1,56 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="Header" TargetType="Label">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontFamily" Value="Tw Cen MT"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="#37474f"/>
+        <Setter Property="Padding" Value="10"/>
+    </Style>
+
+    <Style x:Key="AButton" TargetType="Button">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="Tw Cen MT"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Background" Value="#ff9c1a"/>
+        <Setter Property="Foreground" Value="#37474f"/>
+    </Style>
+
+    <Style x:Key="ACombobox" TargetType="ComboBox">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="Tw Cen MT"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Foreground" Value="#37474f"/>
+    </Style>
+
+    <Style x:Key="ATextBox" TargetType="TextBox">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Foreground" Value="#37474f"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+    </Style>
+
+    <Style x:Key="APasswordBox" TargetType="PasswordBox">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Foreground" Value="#37474f"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+    </Style>
+
+    <Style x:Key="ATextBlock" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="Tw Cen MT"/>
+        <Setter Property="Foreground" Value="#37474f"/>
+    </Style>
+
+    <Style x:Key="AHyperlink" TargetType="Hyperlink">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="Tw Cen MT"/>
+        <Setter Property="Foreground" Value="#546e7a"/>
+    </Style>
+
+</ResourceDictionary>

@@ -5,8 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuickDeal"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="QuickDeal - быстрые сделки, выгодные предложения" Height="800" Width="1280" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Closing="Window_Closing">
+
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Логотип и заголовок -->
+        <StackPanel Orientation="Horizontal" Width="250" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="16">
+            <Image Name="Logotype" Grid.Row="0" Source="References/Images/UI/Logo.png" Margin="0 0 10 0"/>
+            <Label Name="Header" Content="Доска объявлений" Margin="5 0 0 0" Style="{StaticResource Header}"/>
+        </StackPanel>
+
+        <!-- Панель с элементами поиска -->
+        <StackPanel Orientation="Horizontal" Width="770" Margin="16" VerticalAlignment="Center">
+            <Label Content="Поиск" Margin="0 0 10 0" Style="{StaticResource Header}"/>
+            <TextBox x:Name="Search" Width="250" Margin="0 0 10 0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="14" Padding="5" Foreground="#37474f" FontFamily="Tw Cen MT"/>
+
+            <ComboBox x:Name="City" Width="100" Margin="0 0 10 0"/>
+            <ComboBox x:Name="Category" Width="100" Margin="0 0 10 0"/>
+            <ComboBox x:Name="Type" Width="100" Margin="0 0 10 0"/>
+            <ComboBox x:Name="Status" Width="100" Margin="0 0 10 0"/>
+        </StackPanel>
+
+        <Button Content="Авторизация" HorizontalAlignment="Right" Margin="16" Height="30" VerticalAlignment="Center" Width="120" Style="{StaticResource AButton}"/>
+
     </Grid>
 </Window>
