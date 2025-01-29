@@ -1,19 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace QuickDeal.Authentication
 {
@@ -103,6 +91,12 @@ namespace QuickDeal.Authentication
                 };
                 db.users.Add(newUser);
                 db.SaveChanges();
+                MessageBox.Show("Вы зарегистрированы в систему!",
+                    "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                isNav = true;
+                Auth auth = new Auth();
+                auth.Show();
+                this.Close();
             }
             catch (SqlException ex)
             {

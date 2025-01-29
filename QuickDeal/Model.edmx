@@ -57,10 +57,10 @@
           <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="login" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="first_name" Type="nvarchar" MaxLength="70" Nullable="false" />
-          <Property Name="last_name" Type="nvarchar" MaxLength="70" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="70" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="70" />
           <Property Name="second_name" Type="nvarchar" MaxLength="70" />
-          <Property Name="phone_number" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="phone_number" Type="nvarchar" MaxLength="20" />
           <Property Name="profit" Type="decimal" Precision="10" Scale="2" />
         </EntityType>
         <Association Name="FK__ads__ad_category__4CA06362">
@@ -219,10 +219,10 @@
           <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="first_name" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="last_name" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="last_name" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
           <Property Name="second_name" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
-          <Property Name="phone_number" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone_number" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="profit" Type="Decimal" Precision="10" Scale="2" />
           <NavigationProperty Name="ads" Relationship="Self.FK__ads__user_id__4BAC3F29" FromRole="users" ToRole="ads" />
         </EntityType>
