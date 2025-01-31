@@ -76,6 +76,7 @@
                                     <TextBlock Text="{Binding ad_price, StringFormat={}{0} ₽}" TextWrapping="Wrap" TextAlignment="Center" Foreground="#546e7a"  Style="{StaticResource ATextBlock}" FontSize="16" FontWeight="Bold"/>
                                     <TextBlock Text="{Binding city.city_name}" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource ATextBlock}" FontSize="16"/>
                                     <TextBlock Text="{Binding ad_types.ad_type_name}" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource ATextBlock}" FontSize="16"/>
+                                    <TextBlock Text="{Binding ad_statuses.ad_status_name}" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource ATextBlock}" FontSize="16"/>
                                     <TextBlock Text="{Binding user.FullName}" TextWrapping="Wrap" TextAlignment="Center" Foreground="#546e7a" FontSize="14" FontWeight="Bold"/>
                                 </StackPanel>
                             </Grid>

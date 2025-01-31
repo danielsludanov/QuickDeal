@@ -1,0 +1,51 @@
+﻿<Page x:Class="QuickDeal.Pages.AdvAdd"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:QuickDeal.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1250"
+      Title="AdvAdd">
+
+    <Grid Background="White">
+
+        <StackPanel Orientation="Vertical" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Image Source="../References/Images/UI/Logo.png" Width="50" Margin="16"/>
+                <Label Name="AuthHeader" Content="Добавить новое объявление" Style="{StaticResource Header}" FontSize="16" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <Label Content="Название" HorizontalAlignment="Center" Style="{StaticResource Header}"/>
+            <TextBox Name="TitleTextBox" Style="{StaticResource ATextBox}" Width="300" Margin="0 0 0 10" ToolTip="Название объявления"/>
+
+            <Label Content="Описание" HorizontalAlignment="Center" Style="{StaticResource Header}"/>
+            <TextBox Name="DescriptionTextBox" Style="{StaticResource ATextBox}" Width="300" Height="100" Margin="0 0 0 10" ToolTip="Описание объявления" AcceptsReturn="True"/>
+
+
+            <Label Content="Цена" HorizontalAlignment="Center" Style="{StaticResource Header}"/>
+            <TextBox Name="PriceTextBox" Style="{StaticResource ATextBox}" Width="300" Margin="0 0 0 10" ToolTip="Цена" />
+
+            <Label Content="Выберите город" HorizontalAlignment="Center" Style="{StaticResource Header}"/>
+            <ComboBox x:Name="CityComboBox" Width="300" Margin="0 0 0 10" Style="{StaticResource ACombobox}"/>
+
+            <TextBlock Text="Выберите категорию" Style="{StaticResource ATextBlock}" HorizontalAlignment="Center"/>
+            <ComboBox x:Name="CategoryComboBox" Width="300" Margin="0 0 0 10" Style="{StaticResource ACombobox}">
+            </ComboBox>
+
+            <Label Content="Выберите тип объявления" HorizontalAlignment="Center" Style="{StaticResource Header}"/>
+            <ComboBox x:Name="AdTypeComboBox" Width="300" Margin="0 0 0 10">
+            </ComboBox>
+
+            <Label Content="Статус" HorizontalAlignment="Center" Style="{StaticResource Header}"/>
+            <ComboBox x:Name="StatusComboBox" Width="300" Margin="0 0 0 10">
+            </ComboBox>
+
+            <Label Content="Путь к изображению" HorizontalAlignment="Center" Style="{StaticResource Header}"/>
+            <TextBox Name="ImagePathTextBox" Style="{StaticResource ATextBox}" Width="300" Margin="0 0 0 10" ToolTip="Путь к изображению" />
+
+            <Button Name="AddAdButton" Width="200" Margin="0 0 0 10" Style="{StaticResource AButton}" Content="Добавить объявление" Click="AddAdButton_Click" Height="25"/>
+        </StackPanel>
+
+    </Grid>
+</Page>

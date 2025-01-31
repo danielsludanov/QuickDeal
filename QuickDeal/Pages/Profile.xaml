@@ -5,10 +5,132 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:QuickDeal.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="800" d:DesignWidth="1250"
       Title="Profile">
 
     <Grid Background="White">
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TabControl Grid.Row="0">
+            <TabItem Header="Активные объявления">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="120"/>
+                    </Grid.RowDefinitions>
+                    
+                    <ListView x:Name="AListAds" HorizontalContentAlignment="Stretch"
+                              ScrollViewer.VerticalScrollBarVisibility="Auto"
+                              Height="800" Width="1250" Grid.Row="0">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="3" HorizontalAlignment="Stretch"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border Margin="10" BorderThickness="1" BorderBrush="Gray" CornerRadius="10" Padding="10">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="350"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Image Width="350" Grid.Row="1" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 0 0 10">
+                                            <Image.Source>
+                                                <Binding Path="ad_image">
+                                                    <Binding.TargetNullValue>
+                                                        <ImageSource>/References/Images/Ads/default.jpg</ImageSource>
+                                                    </Binding.TargetNullValue>
+                                                </Binding>
+                                            </Image.Source>
+                                        </Image>
+
+                                        <StackPanel Grid.Row="2" HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding title}" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource ATextBlock}" FontSize="16"/>
+                                            <TextBlock Text="{Binding ad_price, StringFormat={}{0} ₽}" TextWrapping="Wrap" TextAlignment="Center" Foreground="#546e7a"  Style="{StaticResource ATextBlock}" FontSize="16" FontWeight="Bold"/>
+                                            <TextBlock Text="{Binding CityName}" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource ATextBlock}" FontSize="16"/>
+                                            <TextBlock Text="{Binding CategoryName}" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource ATextBlock}" FontSize="16"/>
+                                            <TextBlock Text="{Binding TypeName}" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource ATextBlock}" FontSize="16"/>
+                                            <TextBlock Text="{Binding ad_status}" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource ATextBlock}" FontSize="16"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Завершенные объявления">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <ListView x:Name="DListAds" HorizontalContentAlignment="Stretch"
+                              ScrollViewer.VerticalScrollBarVisibility="Auto"
+                              Height="800" Width="1250">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="3" HorizontalAlignment="Stretch"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border Margin="10" BorderThickness="1" BorderBrush="Gray" CornerRadius="10" Padding="10">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="350"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Image Width="350" Grid.Row="1" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 0 0 10">
+                                            <Image.Source>
+                                                <Binding Path="ad_image">
+                                                    <Binding.TargetNullValue>
+                                                        <ImageSource>/References/Images/Ads/default.jpg</ImageSource>
+                                                    </Binding.TargetNullValue>
+                                                </Binding>
+                                            </Image.Source>
+                                        </Image>
+
+                                        <StackPanel Grid.Row="2" HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding title}" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource ATextBlock}" FontSize="16"/>
+                                            <TextBlock Text="{Binding ad_price, StringFormat={}{0} ₽}" TextWrapping="Wrap" TextAlignment="Center" Foreground="#546e7a"  Style="{StaticResource ATextBlock}" FontSize="16" FontWeight="Bold"/>
+                                            <TextBlock Text="{Binding CityName}" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource ATextBlock}" FontSize="16"/>
+                                            <TextBlock Text="{Binding CategoryName}" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource ATextBlock}" FontSize="16"/>
+                                            <TextBlock Text="{Binding TypeName}" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource ATextBlock}" FontSize="16"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10">
+            <Button x:Name="BtnAdd" Content="Добавить" Style="{StaticResource AButton}" Width="120" Margin="5" Height="33" Click="BtnAdd_Click"/>
+            <Button x:Name="BtnEdit" Content="Редактировать" Style="{StaticResource AButton}" Width="120" Margin="5" Height="33" Click="BtnEdit_Click"/>
+            <Button x:Name="BtnDelete" Content="Удалить" Width="120" Style="{StaticResource AButton}" Margin="5" Height="33" Click="BtnDelete_Click"/>
+            <Button x:Name="BtnDone" Content="Завершить" Width="120" Style="{StaticResource AButton}" Margin="5" Height="33" Click="BtnDone_Click"/>
+
+            <TextBlock Name="TotalProfitTextBlock" Style="{StaticResource ATextBlock}" HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+                               Margin="0,0,10,10" FontWeight="Bold" FontSize="14"/>
+            <Button Content="Назад" Width="120" Height="33" Margin="5" Click="BackButton_Click"/>
+
+        </StackPanel>
     </Grid>
 </Page>

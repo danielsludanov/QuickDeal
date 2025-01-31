@@ -1,10 +1,7 @@
 ﻿using QuickDeal.Authentication;
 using QuickDeal.Pages;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace QuickDeal
 {
@@ -21,7 +18,7 @@ namespace QuickDeal
             LoadCategories();
             LoadTypes();
             LoadStatuses();
-            FilterAds(); // Загружаем объявления с учетом фильтрации
+            FilterAds();
 
             int currentUserID = ((App)Application.Current).CurrentUserID;
 
@@ -31,7 +28,6 @@ namespace QuickDeal
                 BtnProfile.Visibility = Visibility.Visible;
             }
 
-            // Добавляем обработчики для ComboBox и TextBox
             City.SelectionChanged += (s, e) => FilterAds();
             Category.SelectionChanged += (s, e) => FilterAds();
             Type.SelectionChanged += (s, e) => FilterAds();
@@ -75,42 +71,44 @@ namespace QuickDeal
         {
             var ads = db.ads.AsQueryable();
 
-            // Фильтр по городу
+           
+            int completedStatusId = GetCompletedStatusId();
+
+            if (completedStatusId != -1)
+            {
+                ads = ads.Where(a => a.ad_status_id != completedStatusId);
+            }
+
             if (City.SelectedValue != null)
             {
                 int cityId = (int)City.SelectedValue;
                 ads = ads.Where(a => a.city_id == cityId);
             }
 
-            // Фильтр по категории
             if (Category.SelectedValue != null)
             {
                 int categoryId = (int)Category.SelectedValue;
                 ads = ads.Where(a => a.ad_category_id == categoryId);
             }
 
-            // Фильтр по типу
             if (Type.SelectedValue != null)
             {
                 int typeId = (int)Type.SelectedValue;
                 ads = ads.Where(a => a.ad_type_id == typeId);
             }
 
-            // Фильтр по статусу
             if (Status.SelectedValue != null)
             {
                 int statusId = (int)Status.SelectedValue;
                 ads = ads.Where(a => a.ad_status_id == statusId);
             }
 
-            // Фильтр по названию или описанию объявления
             string searchText = Search.Text.Trim().ToLower();
             if (!string.IsNullOrEmpty(searchText))
             {
                 ads = ads.Where(a => a.title.ToLower().Contains(searchText) || a.description.ToLower().Contains(searchText));
             }
 
-            // Обновление списка объявлений
             ListAds.ItemsSource = ads.ToList();
         }
 
@@ -133,14 +131,13 @@ namespace QuickDeal
 
         private void ClearFilters_Click(object sender, RoutedEventArgs e)
         {
-            // Сброс всех фильтров
+
             City.SelectedValue = null;
             Category.SelectedValue = null;
             Type.SelectedValue = null;
             Status.SelectedValue = null;
             Search.Text = string.Empty;
 
-            // Обновление списка без фильтров
             FilterAds();
         }
 
@@ -155,6 +152,13 @@ namespace QuickDeal
         private void BtnProfile_Click(object sender, RoutedEventArgs e)
         {
             FrameManager.MainFrame.Navigate(new Profile());
+        }
+
+        private int GetCompletedStatusId()
+        {
+            var completedStatus = db.ad_statuses
+                                    .FirstOrDefault(s => s.ad_status_name == "Завершено");
+            return completedStatus?.ad_status_id ?? -1;
         }
     }
 }

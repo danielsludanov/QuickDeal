@@ -22,8 +22,15 @@
                 <Label Name="Password" Content="Пароль" Style="{StaticResource Header}" Padding="10"/>
                 <PasswordBox x:Name="UserPassword" Style="{StaticResource APasswordBox}" Height="30" Margin="0 0 0 16" MaxLength="50"/>
 
+                <Label Name="FIO" Content="ФИО" Style="{StaticResource Header}" Padding="10"/>
+                <TextBox x:Name="UserFIO" Style="{StaticResource ATextBox}" Height="30" Margin="0 0 0 16" MaxLength="50"/>
+
+                <Label Name="PhoneNumber" Content="Номер телефона" Style="{StaticResource Header}" Padding="10"/>
+                <TextBox x:Name="UserPhoneNumber" Style="{StaticResource ATextBox}" Height="30" Margin="0 0 0 16" MaxLength="50"/>
+
                 <Button x:Name="BtnLogin" Content="Войти" Style="{StaticResource AButton}" Click="BtnLogin_Click" Width="120" Margin="0 0 0 16" Height="30"/>
 
+                
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ATextBlock}">
             <Run Text="Есть аккаунт?"/>
             <Hyperlink x:Name="LinkAuth" Click="LinkAuth_Click" Style="{StaticResource AHyperlink}">Авторизоваться</Hyperlink>
