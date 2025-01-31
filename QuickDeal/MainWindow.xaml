@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuickDeal"
         mc:Ignorable="d"
-        Title="QuickDeal - быстрые сделки, выгодные предложения" Height="800" Width="1280" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Closing="Window_Closing">
+        Title="QuickDeal - быстрые сделки, выгодные предложения" Height="1000" Width="1280" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Closing="Window_Closing">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" Width="200" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="16">
@@ -32,7 +33,11 @@
             <TextBox x:Name="Search" Width="120" Margin="0 0 10 0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="12" Padding="5" Foreground="#37474f" FontFamily="Tw Cen MT" Height="25"/>
         </StackPanel>
 
-        <Button Content="Авторизация" HorizontalAlignment="Right" Margin="16" Height="30" VerticalAlignment="Center" Width="120" Style="{StaticResource AButton}"/>
+        
+        
+        <Button x:Name="BtnLogin" Content="Авторизация" HorizontalAlignment="Center"  Grid.Row="2" Height="30" VerticalAlignment="Center" Width="120" Style="{StaticResource AButton}" Click="BtnLogin_Click"/>
+        <Button x:Name="BtnProfile" Content="Профиль" HorizontalAlignment="Center"  Grid.Row="2" Height="30" VerticalAlignment="Center" Width="120" Style="{StaticResource AButton}" Click="BtnProfile_Click"  Visibility="Hidden"/>
+        <Button Content="Очистить" HorizontalAlignment="Right" Margin="16" Height="30" VerticalAlignment="Center" Width="120" Style="{StaticResource AButton}" Click="ClearFilters_Click"/>
 
         <StackPanel Grid.Row="1">
             <ListView x:Name="ListAds" HorizontalContentAlignment="Stretch"
@@ -71,6 +76,7 @@
                                     <TextBlock Text="{Binding ad_price, StringFormat={}{0} ₽}" TextWrapping="Wrap" TextAlignment="Center" Foreground="#546e7a"  Style="{StaticResource ATextBlock}" FontSize="16" FontWeight="Bold"/>
                                     <TextBlock Text="{Binding city.city_name}" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource ATextBlock}" FontSize="16"/>
                                     <TextBlock Text="{Binding ad_types.ad_type_name}" TextWrapping="Wrap" TextAlignment="Center" Style="{StaticResource ATextBlock}" FontSize="16"/>
+                                    <TextBlock Text="{Binding user.FullName}" TextWrapping="Wrap" TextAlignment="Center" Foreground="#546e7a" FontSize="14" FontWeight="Bold"/>
                                 </StackPanel>
                             </Grid>
                         </Border>
@@ -78,6 +84,7 @@
                 </ListView.ItemTemplate>
             </ListView>
         </StackPanel>
+        <Frame Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
 
     </Grid>
 </Window>

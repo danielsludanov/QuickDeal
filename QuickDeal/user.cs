@@ -31,5 +31,6 @@ namespace QuickDeal
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ad> ads { get; set; }
+        public string FullName => $"{last_name} {first_name} {second_name}".Trim();
     }
 }
