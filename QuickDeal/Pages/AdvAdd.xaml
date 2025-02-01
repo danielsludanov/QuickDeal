@@ -17,10 +17,10 @@
             </StackPanel>
 
             <Label Content="Название" HorizontalAlignment="Center" Style="{StaticResource Header}"/>
-            <TextBox Name="TitleTextBox" Style="{StaticResource ATextBox}" Width="300" Margin="0 0 0 10" ToolTip="Название объявления"/>
+            <TextBox Name="TitleTextBox" Style="{StaticResource ATextBox}" Width="300" Margin="0 0 0 10" ToolTip="Название объявления" MaxLength="200"/>
 
             <Label Content="Описание" HorizontalAlignment="Center" Style="{StaticResource Header}"/>
-            <TextBox Name="DescriptionTextBox" Style="{StaticResource ATextBox}" Width="300" Height="100" Margin="0 0 0 10" ToolTip="Описание объявления" AcceptsReturn="True"/>
+            <TextBox Name="DescriptionTextBox" Style="{StaticResource ATextBox}" Width="300" Height="100" Margin="0 0 0 10" ToolTip="Описание объявления" AcceptsReturn="True" MaxLength="1000" VerticalContentAlignment="Top" TextWrapping="Wrap"/>
 
 
             <Label Content="Цена" HorizontalAlignment="Center" Style="{StaticResource Header}"/>
@@ -42,9 +42,10 @@
             </ComboBox>
 
             <Label Content="Путь к изображению" HorizontalAlignment="Center" Style="{StaticResource Header}"/>
-            <TextBox Name="ImagePathTextBox" Style="{StaticResource ATextBox}" Width="300" Margin="0 0 0 10" ToolTip="Путь к изображению" />
+            <TextBox Name="ImagePathTextBox" Style="{StaticResource ATextBox}" Width="300" Margin="0 0 0 10" ToolTip="Путь к изображению" MaxLength="255" />
 
             <Button Name="AddAdButton" Width="200" Margin="0 0 0 10" Style="{StaticResource AButton}" Content="Добавить объявление" Click="AddAdButton_Click" Height="25"/>
+            <Button Name="BackAdButton" Width="200" Margin="0 0 0 10" Style="{StaticResource AButton}" Content="Отмена" Click="BackAdButton_Click" Height="25"/>
         </StackPanel>
 
     </Grid>

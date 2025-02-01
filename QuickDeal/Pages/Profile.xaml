@@ -10,21 +10,33 @@
 
     <Grid Background="White">
         <Grid.RowDefinitions>
+           
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TabControl Grid.Row="0">
+        
+        <Grid Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 10">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                
+                <Image Source="/References/AppIcons/Images/Icon.png" Width="40" Height="40" Margin="10,0" />
+                
+                <Label Content="Профиль" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource Header}"/>
+            </StackPanel>
+        </Grid>
+
+        <TabControl Grid.Row="1">
             <TabItem Header="Активные объявления">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="120"/>
                     </Grid.RowDefinitions>
-                    
+
                     <ListView x:Name="AListAds" HorizontalContentAlignment="Stretch"
                               ScrollViewer.VerticalScrollBarVisibility="Auto"
-                              Height="800" Width="1250" Grid.Row="0">
+                              Height="800" Width="1250" Grid.Row="0" MouseDoubleClick="AListAds_MouseDoubleClick">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <UniformGrid Columns="3" HorizontalAlignment="Stretch"/>
@@ -121,16 +133,14 @@
             </TabItem>
         </TabControl>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10">
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10">
             <Button x:Name="BtnAdd" Content="Добавить" Style="{StaticResource AButton}" Width="120" Margin="5" Height="33" Click="BtnAdd_Click"/>
-            <Button x:Name="BtnEdit" Content="Редактировать" Style="{StaticResource AButton}" Width="120" Margin="5" Height="33" Click="BtnEdit_Click"/>
             <Button x:Name="BtnDelete" Content="Удалить" Width="120" Style="{StaticResource AButton}" Margin="5" Height="33" Click="BtnDelete_Click"/>
             <Button x:Name="BtnDone" Content="Завершить" Width="120" Style="{StaticResource AButton}" Margin="5" Height="33" Click="BtnDone_Click"/>
+            <Button Content="Назад" Width="120" Height="33" Margin="0 0 10 0" Click="BackButton_Click" Style="{StaticResource AButton}"/>
 
             <TextBlock Name="TotalProfitTextBlock" Style="{StaticResource ATextBlock}" HorizontalAlignment="Right" VerticalAlignment="Bottom" 
                                Margin="0,0,10,10" FontWeight="Bold" FontSize="14"/>
-            <Button Content="Назад" Width="120" Height="33" Margin="5" Click="BackButton_Click"/>
-
         </StackPanel>
     </Grid>
 </Page>

@@ -56,7 +56,7 @@ namespace QuickDeal.Authentication
                     return;
                 }
 
-                var CheckUser = db.users.AsNoTracking().FirstOrDefault(u => u.login == Login);
+                var CheckUser = db.users.AsNoTracking().FirstOrDefault(u => u.login == Login && u.password == Password);
 
                 if (CheckUser == null)
                 {

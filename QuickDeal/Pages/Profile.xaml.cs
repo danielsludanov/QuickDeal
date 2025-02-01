@@ -166,7 +166,6 @@ namespace QuickDeal.Pages
             {
                 selectedAd = AListAds.SelectedItem;
             }
-
             else if (DListAds.SelectedItem != null)
             {
                 selectedAd = DListAds.SelectedItem;
@@ -176,14 +175,20 @@ namespace QuickDeal.Pages
             {
                 int adId = selectedAd.ad_id;
 
-                if (MessageBox.Show("Вы точно хотите завершить выбранное объявление?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                var adToFinish = db.ads.FirstOrDefault(a => a.ad_id == adId);
+                if (adToFinish != null)
                 {
-                    try
+                    var completedStatus = db.ad_statuses.FirstOrDefault(s => s.ad_status_name == "Завершено");
+                    if (adToFinish.ad_status_id == completedStatus?.ad_status_id)
                     {
-                        var adToFinish = db.ads.FirstOrDefault(a => a.ad_id == adId);
-                        if (adToFinish != null)
+                        MessageBox.Show("Это объявление уже завершено.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+
+                    if (MessageBox.Show("Вы точно хотите завершить выбранное объявление?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        try
                         {
-                            var completedStatus = db.ad_statuses.FirstOrDefault(s => s.ad_status_name == "Завершено");
                             if (completedStatus != null)
                             {
                                 adToFinish.ad_status_id = completedStatus.ad_status_id;
@@ -199,15 +204,15 @@ namespace QuickDeal.Pages
                                 MessageBox.Show("Не удалось найти статус 'Завершено' в базе данных.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                             }
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            MessageBox.Show("Не удалось найти объявление для завершения.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show($"Ошибка при завершении объявления: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Ошибка при завершении объявления: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
+                }
+                else
+                {
+                    MessageBox.Show("Не удалось найти выбранное объявление.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
@@ -218,13 +223,13 @@ namespace QuickDeal.Pages
 
         private void AListAds_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Проверяем, выбран ли элемент
+            
             var selectedAd = AListAds.SelectedItem as dynamic;
 
             if (selectedAd != null)
             {
-                int adId = selectedAd.ad_id;  // Получаем ID выбранного объявления
-                FrameManager.MainFrame.Navigate(new AdvAdd(adId));  // Переход на страницу редактирования с переданным ID
+                int adId = selectedAd.ad_id;
+                FrameManager.MainFrame.Navigate(new AdvAdd(adId));
             }
             else
             {
@@ -233,7 +238,18 @@ namespace QuickDeal.Pages
         }
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            NavigationService?.Navigate(new MainPage());
+        }
+
+        private void AListAds_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            dynamic selectedAd = ((ListView)sender).SelectedItem;
+
+            if (selectedAd != null)
+            {
+                int adId = selectedAd.ad_id;
+                FrameManager.MainFrame.Navigate(new AdvAdd(adId));
+            }
         }
     }
 }

@@ -8,6 +8,11 @@ namespace QuickDeal.Pages
 {
     public partial class AdvAdd : Page
     {
+        private readonly string pricePattern = @"^\d+$";
+        private readonly string titlePattern = @"^[a-zA-Zа-яА-ЯёЁ0-9\s,.'-]+$";
+        private readonly string descriptionPattern = @"^[a-zA-Zа-яА-ЯёЁ0-9\s,.'-]+$";
+
+
         private readonly int currentUserID = ((App)Application.Current).CurrentUserID;
         private readonly QuickDealEntities db;
         private int? adIdToEdit;
@@ -110,52 +115,44 @@ namespace QuickDeal.Pages
         {
             try
             {
-                
                 if (string.IsNullOrWhiteSpace(TitleTextBox.Text) ||
                     string.IsNullOrWhiteSpace(DescriptionTextBox.Text) ||
                     string.IsNullOrWhiteSpace(PriceTextBox.Text) ||
                     CityComboBox.SelectedItem == null ||
                     CategoryComboBox.SelectedItem == null ||
                     AdTypeComboBox.SelectedItem == null ||
-                    StatusComboBox.SelectedItem == null)
+                    StatusComboBox.SelectedItem == null ||
+                    string.IsNullOrWhiteSpace(ImagePathTextBox.Text))
                 {
-                    MessageBox.Show("Пожалуйста, заполните все поля.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Пожалуйста, заполните все поля, включая путь к картинке.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
-                
-                string titlePattern = @"^[a-zA-Zа-яА-ЯёЁ0-9\s,.'-]+$";
                 if (!Regex.IsMatch(TitleTextBox.Text, titlePattern))
                 {
                     MessageBox.Show("Название объявления должно содержать только русские и английские буквы, цифры и пробелы.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
-                string descriptionPattern = @"^[a-zA-Zа-яА-ЯёЁ0-9\s,.'-]+$";
                 if (!Regex.IsMatch(DescriptionTextBox.Text, descriptionPattern))
                 {
                     MessageBox.Show("Описание объявления должно содержать только русские и английские буквы, цифры и пробелы.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
-              
-                string pricePattern = @"^\d+(\.\d{1,2})?$";
                 if (!Regex.IsMatch(PriceTextBox.Text, pricePattern))
                 {
-                    MessageBox.Show("Цена должна содержать только цифры и может иметь до 2 знаков после запятой.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Цена должна быть целым числом без запятой.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
-                
                 decimal price = decimal.Parse(PriceTextBox.Text);
-
 
                 if (adIdToEdit.HasValue)
                 {
                     var existingAd = db.ads.FirstOrDefault(a => a.ad_id == adIdToEdit.Value);
                     if (existingAd != null)
                     {
-                        
                         existingAd.title = TitleTextBox.Text;
                         existingAd.description = DescriptionTextBox.Text;
                         existingAd.ad_price = price;
@@ -165,10 +162,10 @@ namespace QuickDeal.Pages
                         existingAd.ad_type_id = (int)AdTypeComboBox.SelectedValue;
                         existingAd.ad_status_id = (int)StatusComboBox.SelectedValue;
 
-                        
                         db.SaveChanges();
 
                         MessageBox.Show("Объявление обновлено успешно!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                        NavigationService?.Navigate(new Profile());
                     }
                     else
                     {
@@ -177,7 +174,6 @@ namespace QuickDeal.Pages
                 }
                 else
                 {
-                    
                     var newAd = new ad
                     {
                         user_id = currentUserID,
@@ -196,9 +192,9 @@ namespace QuickDeal.Pages
                     db.SaveChanges();
 
                     MessageBox.Show("Объявление добавлено успешно!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                    NavigationService?.Navigate(new Profile());
                 }
 
-                
                 ClearForm();
             }
             catch (Exception ex)
@@ -217,6 +213,11 @@ namespace QuickDeal.Pages
             CategoryComboBox.SelectedIndex = -1;
             AdTypeComboBox.SelectedIndex = -1;
             StatusComboBox.SelectedIndex = -1;
+        }
+
+        private void BackAdButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new Profile());
         }
     }
 }
